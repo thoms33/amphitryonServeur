@@ -30,10 +30,9 @@ switch ($action) {
         echo json_encode(['success' => false, 'message' => 'Action inconnue']);
 }
 
-
 // FONCTIONS
 
-
+// Récupère la liste des utilisateurs ayant le rôle serveur (idRole = 3)
 function getServeurs() {
     try {
         $connexion = DBConnex::getInstance();
@@ -47,6 +46,7 @@ function getServeurs() {
     }
 }
 
+// Récupère les tables affectées pour une date précise passée en POST
 function getTablesParDate() {
     if (!isset($_POST['dateCommande'])) {
         echo json_encode(['success' => false, 'message' => 'Date manquante']);
@@ -63,7 +63,7 @@ function getTablesParDate() {
     }
 }
 
-
+// Récupère les détails d'une table à partir de son identifiant
 function getTableById() {
     if (!isset($_POST['idTable'])) {
         echo json_encode(['success' => false, 'message' => 'ID table manquant']);
@@ -85,6 +85,7 @@ function getTableById() {
     }
 }
 
+// Modifie les informations d’une table : nombre de places et serveur assigné
 function modifierTable() {
     if (!isset($_POST['idTable'], $_POST['nombrePlace'], $_POST['idServeur'])) {
         echo json_encode(['success' => false, 'message' => 'Paramètres manquants']);
@@ -109,6 +110,7 @@ function modifierTable() {
     }
 }
 
+// Supprime une table de la base selon son identifiant
 function supprimerTable() {
     if (!isset($_POST['idTable'])) {
         echo json_encode(['success' => false, 'message' => 'ID table manquant']);
@@ -127,5 +129,4 @@ function supprimerTable() {
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
-    
 }
