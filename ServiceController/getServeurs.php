@@ -14,6 +14,8 @@ $idService = $_POST['idService'];
 
 //appel DAO pour recuperer les serveurs présents ce jour-là pour ce service
 $dao = new UtilisateurDAO();
+$date = 2025-05-28;
+$idService = 1;
 $serveurs = $dao->getServeurs($date, $idService);
 
 echo json_encode($serveurs);
