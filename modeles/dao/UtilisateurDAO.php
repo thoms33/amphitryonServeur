@@ -22,7 +22,7 @@ class UtilisateurDAO {
         $connexion = DBConnex::getInstance();
         $sql = "SELECT idUtilisateur, nomUtilisateur, prenomUtilisateur
                 FROM Utilisateur 
-                JOIN PRESENT ON idUtilisateur = idUtilisateur
+                JOIN Present ON idUtilisateur = idUtilisateur
                 WHERE idRole = 3 AND datePresent = :date AND idService = :idService";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(":date", $date);
