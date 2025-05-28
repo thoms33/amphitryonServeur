@@ -20,10 +20,10 @@ class UtilisateurDAO {
     // Nouvelle méthode pour récupérer les serveurs présents à une date et un service donnés
     public static function getServeurs($date, $idService) {
         $connexion = DBConnex::getInstance();
-        $sql = "SELECT idUtilisateur, nomUtilisateur, prenomUtilisateur
+        $sql = "SELECT Utilisateur.idUtilisateur, nomUtilisateur, prenomUtilisateur
                 FROM Utilisateur 
-                JOIN Present ON idUtilisateur = idUtilisateur
-                WHERE idRole = 3 AND datePresent = :date AND idService = :idService";
+                JOIN Present ON Utilisateur.idUtilisateur = Present.idUtilisateur
+                WHERE idRole = 3 AND datePresent = :date AND idService = :idService;";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(":date", $date);
         $stmt->bindParam(":idService", $idService);
