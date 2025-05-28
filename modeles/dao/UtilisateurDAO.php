@@ -18,15 +18,15 @@ class UtilisateurDAO {
     }
 
     // Nouvelle méthode pour récupérer les serveurs présents à une date et un service donnés
-    public static function getServeurs($date, $idService) {
+    public static function getServeurs() {
         $connexion = DBConnex::getInstance();
         $sql = "SELECT Utilisateur.idUtilisateur, nomUtilisateur, prenomUtilisateur
                 FROM Utilisateur 
                 JOIN Present ON Utilisateur.idUtilisateur = Present.idUtilisateur
-                WHERE idRole = 3 AND datePresent = :date AND idService = :idService;";
+                WHERE idRole = 3 AND datePresent = '2025-05-28' AND idService = 1;";
         $stmt = $connexion->prepare($sql);
-        $stmt->bindParam(":date", $date);
-        $stmt->bindParam(":idService", $idService);
+      //  $stmt->bindParam(":date", $date);
+      //  $stmt->bindParam(":idService", $idService);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
